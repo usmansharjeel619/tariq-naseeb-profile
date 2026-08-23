@@ -1,0 +1,74 @@
+---
+import ProfileLayout from "../layouts/ProfileLayout.astro";
+import { ArrowRight, ArrowUpRight, Check, ChevronRight, Mail, MapPin, MessageCircle, Phone, QrCode, Send } from "lucide-astro";
+
+const wa = "https://wa.me/97477308308?text=Hello%20Tariq%2C%20I%27m%20contacting%20you%20through%20your%20profile%20website.";
+const address = "Room 902, Building 4, Block A, Zhongfu Plaza, Yiwu City";
+const focus = [
+  ["International trading", "Connecting commercial requirements with cross-border opportunities."],
+  ["Sourcing & procurement", "Finding practical product and supplier pathways for businesses."],
+  ["Business development", "Building durable relationships across markets and categories."],
+  ["Commercial partnerships", "Opening conversations that can move from idea to coordination."],
+];
+const capabilities = [
+  ["01", "Trade & supply", "International trading, import, export and commercial product supply."],
+  ["02", "Source & procure", "Sourcing and procurement support for industrial, commercial and consumer needs."],
+  ["03", "Represent & grow", "Sales agency, marketing planning and business development conversations."],
+  ["04", "Advise with context", "Business management and technology consulting shaped around the requirement."],
+  ["05", "Connect categories", "A broad network across electronics, machinery, home, fashion and specialist goods."],
+  ["06", "Coordinate globally", "A direct route between a clear brief, commercial discussion and next steps."],
+];
+const process = [
+  ["01", "Bring the brief", "Share the product, quantity, specification or partnership idea."],
+  ["02", "Review the need", "Clarify the category, market, timing and commercial context."],
+  ["03", "Explore routes", "Identify appropriate sourcing, procurement or supply options."],
+  ["04", "Discuss terms", "Work through product, quantity, pricing and practical expectations."],
+  ["05", "Coordinate forward", "Align the right people and move the conversation into action."],
+];
+---
+<ProfileLayout title="Tariq Naseeb | Director, YIWU TARIQ" description="Tariq Naseeb, Director of YIWU TARIQ International Trading Co. Ltd. Connect for international trading, sourcing, procurement and business development opportunities.">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="Tariq Naseeb profile home"><img src="/brand/wordmark-blue.png" width="1072" height="163" alt="YIWU TARIQ International Trading Co. Ltd." /></a>
+      <nav class="header-nav" aria-label="Primary navigation"><a href="#profile">Director</a><a href="#capabilities">Capabilities</a><a href="#contact">Contact</a><a class="header-cta" href="https://yiwutariq.com" target="_blank" rel="noreferrer">Official website <ArrowUpRight size={14} aria-hidden="true" /></a></nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <p class="kicker">International commerce & business development</p>
+          <h1 id="hero-title">Tariq<br /><em>Naseeb</em></h1>
+          <p class="hero-lead">Director of YIWU TARIQ International Trading Co. Ltd. Building clear routes between business requirements, global sourcing and commercial opportunity.</p>
+          <div class="actions"><a class="button button-primary" href="#contact">Discuss a requirement <ArrowRight size={16} aria-hidden="true" /></a><a class="button button-ghost" href="https://yiwutariq.com" target="_blank" rel="noreferrer">Visit YIWU TARIQ <ArrowUpRight size={16} aria-hidden="true" /></a></div>
+        </div>
+        <div class="hero-portrait reveal"><div class="hero-portrait-frame"><img src="/images/tariq-naseeb-formal.jpeg" width="1066" height="1600" alt="Tariq Naseeb, Director of YIWU TARIQ" /></div><div class="portrait-note"><b>Director</b>YIWU TARIQ<br />International Trading Co. Ltd.</div></div>
+      </div>
+    </section>
+
+    <div class="proof-strip"><div class="container proof-grid"><div class="proof"><strong>Global</strong><span>Trading perspective</span></div><div class="proof"><strong>Direct</strong><span>Business conversation</span></div><div class="proof"><strong>Multi-sector</strong><span>Commercial scope</span></div><div class="proof"><strong>Yiwu</strong><span>China-based network</span></div></div></div>
+
+    <section class="section section-white" id="profile" aria-labelledby="profile-title">
+      <div class="container profile-grid"><div class="profile-image reveal"><img src="/images/tariq-naseeb-formal.jpeg" width="1066" height="1600" loading="lazy" alt="Formal portrait of Tariq Naseeb" /></div><div class="profile-copy reveal"><p class="section-label">Director profile</p><h2 id="profile-title">Business connections with a point of view.</h2><h3>Tariq Naseeb</h3><p>Tariq Naseeb leads YIWU TARIQ with a focus on international commerce, sourcing, procurement, product supply and business development. His role sits at the intersection of a clear business brief and the people, products and pathways that can answer it.</p><p>Through a broad commercial network, he works with businesses exploring reliable sourcing channels, industrial equipment, consumer products, commercial partnerships and new routes to market.</p><div class="focus-grid">{focus.map(([title, detail]) => <div class="focus-item"><Check size={17} color="var(--blue)" aria-hidden="true" /><strong>{title}</strong><span>{detail}</span></div>)}</div></div></div>
+    </section>
+
+    <section class="section section-light" id="capabilities" aria-labelledby="capabilities-title"><div class="container"><div class="section-head reveal"><p class="section-label">The work around the brief</p><h2 id="capabilities-title">A commercial network, made easier to enter.</h2><p>YIWU TARIQ brings together trading, sourcing and business services so the first conversation can start with the requirement—not the bureaucracy.</p></div><div class="capability-grid">{capabilities.map(([index, title, detail]) => <article class="capability reveal"><span class="capability-index">{index}</span><h3>{title}</h3><p>{detail}</p></article>)}</div></div></section>
+
+    <section class="section section-dark" aria-labelledby="approach-title"><div class="container"><div class="section-head reveal"><p class="section-label">How we work</p><h2 id="approach-title">Simple enough to begin. Serious enough to build on.</h2><p>Every business conversation is different, but progress usually starts with the same discipline: make the need clear, then make the next step practical.</p></div><div class="process">{process.map(([number, title, detail]) => <article class="process-step reveal"><span class="process-number">{number}</span><h3>{title}</h3><p>{detail}</p></article>)}</div></div></section>
+
+    <section class="section section-dark" aria-labelledby="perspective-title"><div class="container perspective"><div class="perspective-image reveal"><img src="/images/tariq-naseeb-perspective.jpeg" width="1200" height="1600" loading="lazy" alt="Tariq Naseeb in conversation" /></div><div class="perspective-copy reveal"><p class="section-label">A director's perspective</p><blockquote id="perspective-title">“Good business starts when the right requirement meets the right conversation.”</blockquote><p>The aim is not to make international business feel larger. It is to make the route through it clearer—one requirement, one relationship and one useful next step at a time.</p><a class="button button-ghost" href="#contact">Start the conversation <ArrowRight size={16} aria-hidden="true" /></a></div></div></section>
+
+    <section class="section section-white" id="contact" aria-labelledby="contact-title"><div class="container contact-shell"><div class="contact-grid"><div class="contact-copy reveal"><p class="section-label">Direct contact</p><h2 id="contact-title">Let’s discuss what you’re building.</h2><p>Share a product requirement, sourcing need, procurement brief or partnership idea. Tariq’s team will respond with the most useful next step.</p><div class="contact-links"><a class="contact-link" href={wa} target="_blank" rel="noreferrer"><span class="contact-link-icon"><MessageCircle size={18} aria-hidden="true" /></span><span><strong>WhatsApp</strong><small>Message the business team</small></span><ArrowUpRight size={15} aria-hidden="true" /></a><a class="contact-link" href="tel:+97477308308"><span class="contact-link-icon"><Phone size={18} aria-hidden="true" /></span><span><strong>+974 7730 8308</strong><small>Business phone</small></span></a><a class="contact-link" href="mailto:Tariqnaseeb@yiwutariq.com"><span class="contact-link-icon"><Mail size={18} aria-hidden="true" /></span><span><strong>Tariqnaseeb@yiwutariq.com</strong><small>Email directly</small></span></a><a class="contact-link" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`} target="_blank" rel="noreferrer"><span class="contact-link-icon"><MapPin size={18} aria-hidden="true" /></span><span><strong>Yiwu, China</strong><small>{address}<br />义乌市中福广场A组团4栋902室</small></span><ArrowUpRight size={15} aria-hidden="true" /></a></div><details class="wechat-details"><summary><span class="contact-link-icon"><QrCode size={18} aria-hidden="true" /></span><span><strong>WeChat</strong><small>Scan to add tariq naseeb</small></span><ChevronRight size={16} aria-hidden="true" /></summary><div class="wechat-panel"><img src="/brand/wechat-qr.jpg" width="866" height="1280" loading="lazy" alt="WeChat QR code for tariq naseeb in Qatar" /><div><strong>Connect on WeChat</strong><p>Scan the code to add us as a friend.</p><small>tariq naseeb · Qatar</small></div></div></details></div>
+        <form class="contact-form reveal" id="contact-form"><p class="honeypot" aria-hidden="true"><label>Leave this empty <input name="honeypot" tabindex="-1" autocomplete="off" /></label></p><div class="field-grid"><div class="field"><label for="name">Full name</label><input id="name" name="name" required autocomplete="name" placeholder="Your full name" /></div><div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization" placeholder="Company name" /></div></div><div class="field-grid"><div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></div><div class="field"><label for="phone">Phone / WhatsApp</label><input id="phone" name="phone" autocomplete="tel" placeholder="Country code + number" /></div></div><div class="field-grid"><div class="field"><label for="country">Country</label><input id="country" name="country" required autocomplete="country-name" placeholder="Your country" /></div><div class="field"><label for="inquiry">Business category</label><select id="inquiry" name="inquiry" required><option value="" selected disabled>Select one</option><option>International trading</option><option>Product sourcing</option><option>Procurement agency</option><option>Product supply</option><option>Sales agency</option><option>Business partnership</option><option>Business consulting</option><option>Other</option></select></div></div><div class="field"><label for="message">Requirement</label><textarea id="message" name="message" required placeholder="Tell us what you are looking for..." rows="6"></textarea></div><button class="button button-primary" type="submit">Send business inquiry <Send size={16} aria-hidden="true" /></button><p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p><p class="form-note">By sending this form, you agree that YIWU TARIQ may contact you about your inquiry.</p></form></div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><img src="/brand/wordmark-blue.png" width="1072" height="163" alt="YIWU TARIQ International Trading Co. Ltd." /><div class="footer-links"><a href="#profile">Director profile</a><a href="#capabilities">Capabilities</a><a href="#contact">Contact</a><a href="https://yiwutariq.com" target="_blank" rel="noreferrer">Official website <ArrowUpRight size={13} aria-hidden="true" /></a></div></div><div class="container footer-bottom"><span>© {new Date().getFullYear()} Tariq Naseeb · YIWU TARIQ International Trading Co. Ltd.</span><span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span></div></footer>
+
+  <script>
+    const revealItems = document.querySelectorAll<HTMLElement>(".reveal");
+    if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) { const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); } }), { threshold: .12 }); revealItems.forEach((item) => observer.observe(item)); } else revealItems.forEach((item) => item.classList.add("visible"));
+    const form = document.querySelector<HTMLFormElement>("#contact-form"); const status = document.querySelector<HTMLElement>("#form-status"); const button = form?.querySelector<HTMLButtonElement>("button[type=submit]");
+    form?.addEventListener("submit", async (event) => { event.preventDefault(); if (!form.reportValidity() || !button || !status) return; const data = new FormData(form); const payload = Object.fromEntries(["name","company","email","phone","country","inquiry","message","honeypot"].map((key) => [key, String(data.get(key) ?? "")])); button.disabled = true; button.textContent = "Sending inquiry..."; status.hidden = false; status.dataset.state = "sending"; status.textContent = "Sending your inquiry..."; try { const response = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }); const result = await response.json().catch(() => ({})); if (!response.ok || !result.ok) throw new Error(result.error || "We could not send your inquiry. Please try again or use WhatsApp."); window.location.assign("/thank-you/"); } catch (error) { status.dataset.state = "error"; status.textContent = error instanceof Error ? error.message : "We could not send your inquiry. Please try again or use WhatsApp."; button.disabled = false; button.textContent = "Send business inquiry"; } });
+  </script>
+</ProfileLayout>

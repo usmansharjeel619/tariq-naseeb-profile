@@ -1,0 +1,23 @@
+{
+  "name": "tariq-naseeb-profile",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "check": "astro check",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.5.1",
+    "@fontsource-variable/dm-sans": "^5.2.5",
+    "@fontsource-variable/manrope": "^5.2.5",
+    "astro": "^5.13.5",
+    "lucide-astro": "^0.468.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.9.2"
+  }
+}
