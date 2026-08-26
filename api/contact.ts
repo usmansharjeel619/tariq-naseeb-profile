@@ -9,9 +9,17 @@ type ContactPayload = {
   honeypot?: unknown;
 };
 
-const MAX_BODY_BYTES = 2_500_000;
-const MAX_ATTACHMENT_BYTES = 2_000_000;
+const MAX_BODY_BYTES = 4_500_000;
+const MAX_ATTACHMENT_BYTES = 4_000_000;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const attachmentTypes = new Map([
+  ["pdf", "application/pdf"],
+  ["doc", "application/msword"],
+  ["docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
+  ["png", "image/png"],
+  ["jpg", "image/jpeg"],
+  ["jpeg", "image/jpeg"],
+]);
 
 const json = (status: number, body: Record<string, string | boolean>) =>
   new Response(JSON.stringify(body), {
@@ -58,6 +66,19 @@ function toBase64(bytes: Uint8Array) {
   return btoa(binary);
 }
 
+function isAllowedAttachment(file: File, bytes: Uint8Array) {
+  const extension = file.name.split(".").pop()?.toLowerCase() ?? "";
+  const expectedType = attachmentTypes.get(extension);
+  if (!expectedType || file.type !== expectedType) return false;
+
+  const header = bytes.slice(0, 8);
+  if (extension === "pdf") return new TextDecoder().decode(header.slice(0, 5)) === "%PDF-";
+  if (extension === "doc") return [0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1].every((value, index) => header[index] === value);
+  if (extension === "docx") return [0x50, 0x4b, 0x03, 0x04].every((value, index) => header[index] === value);
+  if (extension === "png") return [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a].every((value, index) => header[index] === value);
+  return header[0] === 0xff && header[1] === 0xd8 && header[2] === 0xff;
+}
+
 export default {
   async fetch(request: Request) {
     if (request.method !== "POST") return json(405, { ok: false, error: "Method not allowed." });
@@ -89,21 +110,17 @@ export default {
 
       const uploadedFile = formData.get("attachment");
       if (uploadedFile instanceof File && uploadedFile.size > 0) {
-        if (uploadedFile.type !== "application/pdf") {
-          return json(400, { ok: false, error: "Please attach a PDF file only." });
-        }
         if (uploadedFile.size > MAX_ATTACHMENT_BYTES) {
-          return json(413, { ok: false, error: "The PDF must be 2 MB or smaller." });
+          return json(413, { ok: false, error: "The attachment must be 4 MB or smaller." });
         }
 
         const bytes = new Uint8Array(await uploadedFile.arrayBuffer());
-        const signature = new TextDecoder().decode(bytes.slice(0, 5));
-        if (signature !== "%PDF-") {
-          return json(400, { ok: false, error: "The attachment is not a valid PDF." });
+        if (!isAllowedAttachment(uploadedFile, bytes)) {
+          return json(400, { ok: false, error: "Attach a valid PDF, Word document, PNG, or JPEG file." });
         }
 
         attachment = {
-          filename: uploadedFile.name.replace(/[^a-zA-Z0-9._ -]/g, "_") || "attachment.pdf",
+          filename: uploadedFile.name.replace(/[^a-zA-Z0-9._ -]/g, "_") || "attachment",
           content: toBase64(bytes),
         };
       }
